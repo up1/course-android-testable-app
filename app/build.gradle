@@ -36,6 +36,10 @@ dependencies {
 
     //For local unit testing
     testCompile "junit:junit:$rootProject.ext.junitVersion"
+    testCompile "org.mockito:mockito-all:$rootProject.ext.mockitoVersion"
+    testCompile "org.hamcrest:hamcrest-all:$rootProject.ext.hamcrestVersion"
+    testCompile "org.powermock:powermock-module-junit4:$rootProject.ext.powerMockito"
+    testCompile "org.powermock:powermock-api-mockito:$rootProject.ext.powerMockito"
 
     //For Android testing support => Runner and Rule
     androidTestCompile "com.android.support.test:runner:$rootProject.ext.runnerVersion"
