@@ -31,7 +31,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 
 @RunWith(AndroidJUnit4.class)
-public class NoteActivityTest {
+public class NoteScreenTest {
 
     @Rule
     public ActivityTestRule<NoteActivity> mNoteActivityActivityTestRule = new ActivityTestRule<>(NoteActivity.class);

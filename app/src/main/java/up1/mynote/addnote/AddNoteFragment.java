@@ -31,6 +31,7 @@ import java.util.Date;
 import up1.mynote.R;
 import up1.mynote.data.Note;
 import up1.mynote.data.NoteRepository;
+import up1.mynote.util.EspressoIdlingResource;
 import up1.mynote.util.ImageFile;
 
 import static com.google.common.base.Preconditions.checkState;
@@ -152,6 +153,12 @@ public class AddNoteFragment extends Fragment {
             String imageUrl = imageFile.getPath();
             checkState(!TextUtils.isEmpty(imageUrl), "imageUrl cannot be null or empty!");
             mImageThumbnail.setVisibility(View.VISIBLE);
+
+            EspressoIdlingResource.increment();
+
+            System.out.println(imageUrl);
+//            imageUrl = "file:///storage/emulated/0/Pictures/JPEG_20160124_181715_810436891.jpg";
+
             // This app uses Glide for image loading
             Glide.with(this)
                     .load(imageUrl)
@@ -162,7 +169,10 @@ public class AddNoteFragment extends Fragment {
                         public void onResourceReady(GlideDrawable resource,
                                                     GlideAnimation<? super GlideDrawable> animation) {
                             super.onResourceReady(resource, animation);
+
+                            EspressoIdlingResource.decrement();
                         }
+
                     });
         }
     }

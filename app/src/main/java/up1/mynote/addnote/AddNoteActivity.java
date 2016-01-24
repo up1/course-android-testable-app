@@ -1,6 +1,8 @@
 package up1.mynote.addnote;
 
 import android.os.Bundle;
+import android.support.annotation.VisibleForTesting;
+import android.support.test.espresso.IdlingResource;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -9,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import up1.mynote.R;
+import up1.mynote.util.EspressoIdlingResource;
 
 public class AddNoteActivity extends AppCompatActivity {
 
@@ -43,4 +46,8 @@ public class AddNoteActivity extends AppCompatActivity {
         transaction.commit();
     }
 
+    @VisibleForTesting
+    public IdlingResource getCountingIdlingResource() {
+        return EspressoIdlingResource.getIdlingResource();
+    }
 }

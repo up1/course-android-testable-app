@@ -2,13 +2,15 @@ package up1.mynote.util;
 
 import android.net.Uri;
 import android.os.Environment;
+import android.support.annotation.VisibleForTesting;
 
 import java.io.File;
 import java.io.IOException;
 
 public class ImageFile {
 
-    private File imageFile;
+    @VisibleForTesting
+    File imageFile;
 
     public void create(String name, String extension) throws IOException {
         File storageDirectory = Environment.getExternalStoragePublicDirectory(
