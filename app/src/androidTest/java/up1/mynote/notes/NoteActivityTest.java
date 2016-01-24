@@ -65,6 +65,32 @@ public class NoteActivityTest {
         onView(withItemText(newNoteDescription)).check(matches(isDisplayed()));
     }
 
+    @Test
+    public void addNewNote_and_clickToSeeDetail_should_showDetail() {
+        String newNoteTitle = "Hello from somkiat";
+        String newNoteDescription = "This is detail of my note";
+
+        //Click add new note button
+        onView(withId(R.id.fab_add_notes)).perform(click());
+
+        //Fill in data
+        onView(withId(R.id.add_note_title)).perform(typeText(newNoteTitle));
+        onView(withId(R.id.add_note_description)).perform(typeText(newNoteDescription));
+
+        //Save note
+        onView(withId(R.id.fab_add_notes)).perform(click());
+
+        //Scroll to new note
+        onView(withId(R.id.notes_list)).perform(scrollTo(hasDescendant(withText(newNoteDescription))));
+
+        //Click new note
+        onView(withItemText(newNoteDescription)).perform(click());
+
+        //Verify
+        onView(withId(R.id.note_detail_title)).check(matches(withText(newNoteTitle)));
+        onView(withId(R.id.note_detail_description)).check(matches(withText(newNoteDescription)));
+    }
+
     private Matcher<View> withItemText(final String itemText) {
         checkArgument(!TextUtils.isEmpty(itemText), "itemText cannot be null or empty");
         return new TypeSafeMatcher<View>() {
